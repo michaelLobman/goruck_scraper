@@ -1,3 +1,4 @@
+from datetime import datetime
 from pathlib import Path 
 
 class Scraper:
@@ -5,11 +6,12 @@ class Scraper:
 		self.scrape_archive = scrape_archive
 		self._base_url = "https://www.goruck.com/blogs/workouts?page="
 		self._archive_url = "https://www.goruck.com/blogs/news-stories/daily-wod-"
-		self._base_file_name = "goruck"
-		self._last_workout = self.set_last_workout()
+		self._dst_file_path= f"./files/goruck {datetime.now().strftime("%Y-%m-%d")}"
+		self._final_workout = None
+		self._src_file_path = None
 
-	def hello_world(self):
-		print("Hello world!")
+		self.initialize_file()
+
 	@property
 	def base_url(self):
 		return self._base_url
@@ -19,21 +21,30 @@ class Scraper:
 		return self._archive_url
 
 	@property
-	def last_workout(self):
-		return self._last_workout
+	def final_workout(self):
+		return self._final_workout
 
-	def set_last_workout(self):
+	def initialize_file(self):
 		directory = Path("./files")
 		files = [f for f in directory.iterdir() if f.is_file()]  
 		if not files:
-			return None  # Return None if no files found
-		file_path = max(files, key=lambda f: f.stat().st_mtime)
+			# handle here for no existing files
+			# create anew
+			return
+		self._src_file_path = max(files, key=lambda f: f.stat().st_mtime)
+		self.set_final_workout()
+		self.create_dst_file()
 
-		with open(file_path, "r") as file:
+	def set_final_workout(self):
+		with open(self._src_file_path, "r") as file:
 			first_line = file.readline().strip()
-			return first_line
+			self._final_workout = first_line
 
-  
+	def create_dst_file(self):
+  		src = Path(self._src_file_path)  
+  		dst = Path(self._dst_file_path) 
+  		dst.write_bytes(src.read_bytes())  
+
  		
 
 	 	# def scrape():
