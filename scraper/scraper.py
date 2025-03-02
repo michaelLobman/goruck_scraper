@@ -14,6 +14,7 @@ class Scraper:
 		self._rel_path = "./files"
 		self._dst_name = "goruck_to_prepend.txt"
 		self._merged_name = "goruck_merged.txt"
+		self._merged_path = f"{self._rel_path}/{self._merged_name}"
 		self.file_utility = FileUtility(self._rel_path)
 		self._final_workout = self.set_final_workout()
 
@@ -26,8 +27,7 @@ class Scraper:
 		return self._final_workout
 
 	def set_final_workout(self):
-		path = f"{self._rel_path}/{self._merged_name}"
-		return self.file_utility.get_first_line(path)
+		return self.file_utility.get_first_line(_self._merged_path)
 
 	def execute(self):
 		print("copying existed prepend file")
