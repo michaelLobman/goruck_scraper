@@ -4,17 +4,9 @@ This is my scraper for GORUCK's free workouts.
 
 My plan is to standardize the format for both current and historical workouts and allow the scraper to append to a master file every time it runs (create a new copy, as it were).
 
-# go scrape
-
+# TODO: Remove unused imports
 # TODO Scrape Archive: July through December 2023, I believe
-	## List of months, different base_url (probably contain in if)
-	## i think these should just go into their own file, but should ahve archive in the name
-# TODO: setup a method to open existing file, grab first date or title?
-	## scrape until we hit that line
-	## then gracefully exit
-	## this should probably be done on a copy (or should have a backup of some sort)
-# TODO: have one method that flattens and 
-# need our scraper class 
+# TODO: Implement deprecated "Vested" code
 
 ### below is deprecated code that needs to be implemented in current structure
 from datetime import datetime

@@ -14,8 +14,8 @@ class Scraper:
 		self._rel_path = "./files"
 		self._dst_name = "goruck_to_prepend.txt"
 		self._merged_name = "goruck_merged.txt"
-		self._final_workout = self.set_final_workout()
 		self.file_utility = FileUtility(self._rel_path)
+		self._final_workout = self.set_final_workout()
 
 	@property
 	def base_url(self):
@@ -27,24 +27,23 @@ class Scraper:
 
 	def set_final_workout(self):
 		path = f"{self._rel_path}/{self._merged_name}"
-		with open(path, "r") as file:
-			first_line = file.readline().strip()
-			return first_line
+		return self.file_utility.get_first_line(path)
 
 	def execute(self):
 		print("copying existed prepend file")
 		backup_path = self.file_utility.create_backup(self._dst_name)
 		print(f"backup {backup_path} created")
-		scrape()
+		self.scrape()
 		print("scrape successful")
 
 	def scrape(self):
-		max_index = 10
+		max_index = 10 # fail safe
 		index = 0
-		while index < max_index:
+		keep_scraping = True;
+		while keep_scraping and index < max_index:
 			page_num = index+1
-			scrape_url = base_url + str(page_num)
-			self.scrape_page_to_file(scrape_url)
+			scrape_url = self._url + str(page_num)
+			keep_scraping = self.scrape_page_to_file(scrape_url)
 			print(f"scraped page {page_num}")
 			index+=1
 		print("finished scraping")
@@ -63,5 +62,7 @@ class Scraper:
 						if text == self._final_workout:
 							print("reached last workout - exiting scrape.")
 							return False
+						print(text)
 						file.write(text + "\n")
 					file.write("\n\n")
+		return True

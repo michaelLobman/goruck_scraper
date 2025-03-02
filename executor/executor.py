@@ -8,4 +8,4 @@ class Executor:
 
 	def execute_all(self):
 		self._scraper.execute()
-		self._merger.exectue()
+		self._merger.execute()
