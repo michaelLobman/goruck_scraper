@@ -1,12 +1,7 @@
-import re
 import requests
-
-from pathlib import Path 
 from bs4 import BeautifulSoup
-
 from shared.file_utility import FileUtility
 
-# TODO: the scraper should only scrape. it should not have to concern itself with prev content
 class Scraper:
 	def __init__(self):
 		self.count = 0
@@ -16,17 +11,9 @@ class Scraper:
 		self._merged_name = "goruck_merged.txt"
 		self._merged_path = f"{self._rel_path}/{self._merged_name}"
 		self.file_utility = FileUtility(self._rel_path)
-		self._final_workout = self.set_final_workout()
+		self._latest_data = self.set_latest_data()
 
-	@property
-	def base_url(self):
-		return self._base_url
-
-	@property
-	def final_workout(self):
-		return self._final_workout
-
-	def set_final_workout(self):
+	def set_latest_data(self):
 		return self.file_utility.get_first_line(_self._merged_path)
 
 	def execute(self):
@@ -59,8 +46,8 @@ class Scraper:
 				for element in elements:
 					for line in element.find_all("p"):
 						text = line.get_text(strip=True)
-						if text == self._final_workout:
-							print("reached last workout - exiting scrape.")
+						if text == self._latest_data:
+							print("reached latest_data - exiting scrape.")
 							return False
 						print(text)
 						file.write(text + "\n")
