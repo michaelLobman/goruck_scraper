@@ -1,4 +1,4 @@
-from scraper.scraper import Scraper
+from executor.executor import Executor
 
-scraper = Scraper(False)
-
+executor = Executor()
+executor.execute_all()
