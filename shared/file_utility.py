@@ -1,7 +1,6 @@
 from datetime import datetime
 from pathlib import Path 
 
-
 class FileUtility:
 	def __init__(self, rel_path):
 		self._rel_path = rel_path

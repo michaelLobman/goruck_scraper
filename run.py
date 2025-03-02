@@ -1,4 +1,5 @@
 from executor.executor import Executor
 
 executor = Executor()
-executor.execute_all()
+# executor.execute_all()
+executor.execute_archive()

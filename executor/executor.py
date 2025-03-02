@@ -9,3 +9,6 @@ class Executor:
 	def execute_all(self):
 		self._scraper.execute()
 		self._merger.execute()
+
+	def execute_archive(self):
+		self._scraper.scrape_archive()
