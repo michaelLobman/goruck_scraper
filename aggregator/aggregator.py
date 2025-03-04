@@ -22,7 +22,7 @@ class Aggregator(FileProcessor):
 			with open(self._file_manager._path, "w", encoding="utf-8") as out:
 				for line in src:
 					text = line.strip()
-					has_keyword = True if self._keyword in text else has_keyword
+					has_keyword = True if self._keyword in text.lower() else has_keyword
 					if text and is_in_workout:
 						workout.append(text)
 					elif text:
@@ -30,8 +30,8 @@ class Aggregator(FileProcessor):
 						workout = [text]
 						is_in_workout = True
 					else: # end of workout
-						if has_keyword: out.write("\n".join(map(str, workout)))
-						# write to file if has vest
+						if has_keyword: out.write("\n".join(workout) + "\n\n\n")
 						has_keyword = False
 						is_in_workout = False
 						workout = []
+				if has_keyword: out.write("\n".join(workout))

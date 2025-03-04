@@ -302,11 +302,3 @@ Scoring= for time
 *weight vest optional
 
 
-10.2.23 “THE FILTHY PIRATE”
-10 ROUNDS:
-5 Pull-Ups or 10 SB Bent over Rows
-10 Push-Ups
-15 Squats
-20 KB Swings
-Male: 20# weight vest
-Female: 14# weight vest
