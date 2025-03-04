@@ -10,6 +10,9 @@ class FileManager:
 		self._path = f"{self._rel_path}/{self._name}"
 		self._backup_path = f"{self._rel_path}/backups/{self._name}-{self._timestamp}.{self._type}"
 
+	def clear(self):
+		Path(self._path).write_text("")
+
 	def create_backup(self):
 		src = Path(self._path)  
 		if not src.exists():

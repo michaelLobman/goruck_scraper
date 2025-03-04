@@ -1,5 +1,8 @@
-class Merger:
+from shared.file_processor import FileProcessor
+
+class Merger(FileProcessor):
 	def __init__(self):
+		super().__init__()
 		pass
 
 	def merge_files(self):

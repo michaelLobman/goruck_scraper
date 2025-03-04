@@ -16,6 +16,7 @@ class Scraper(FileProcessor):
 
 	def execute(self):
 		self._prepend.create_backup()
+		self._prepend.clear()
 		self.scrape()
 
 	def scrape(self):
@@ -41,9 +42,8 @@ class Scraper(FileProcessor):
 					if text == self._latest_data:
 						print("reached latest_data - exiting scrape.")
 						return False
-					print(text)
 					file.write(text + "\n")
-				file.write("\n\n")
+				file.write("\n")
 		return True
 
 	# Archive methods
