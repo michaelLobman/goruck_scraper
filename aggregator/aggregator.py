@@ -1,3 +1,4 @@
+from shared.file_processor import FileProcessor
 from shared.file_manager import FileManager
 
 class Aggregator(FileProcessor):
@@ -9,10 +10,10 @@ class Aggregator(FileProcessor):
 	def execute(self):
 		print (f"executing aggegator by {self._keyword}")
 		self._file_manager.create_backup()
-		aggregate()
+		self.aggregate()
 		print("aggregate complete")
 
-	def aggregate():
+	def aggregate(self):
 		with open(self._merged._path, "r") as src:
 			to_write = []
 			workout = []
