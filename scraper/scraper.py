@@ -3,8 +3,8 @@ import requests
 from bs4 import BeautifulSoup
 from pathlib import Path
 from shared.file_processor import FileProcessor
-class Scraper(FileProcessor):
 
+class Scraper(FileProcessor):
 	def __init__(self):
 		super().__init__()
 		self._latest_data = self._merged.get_first_line()
