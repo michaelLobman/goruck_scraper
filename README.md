@@ -2,12 +2,16 @@
 
 This is a Python scraper for GORUCK's free workouts, fired off by executing the `run.py` file.
 
-## Features
+## Classes
 
 There are three main classes and associated processes in the scraper, all of which are executed by the `executor` class:
   1. Scraper
   2. Merger
   3. Aggregator
+
+### Executor
+
+Instatiates with instances of Scraper, Merger, and Aggregator classes as properties. All three processes can be run by evoking `execute_all`, though each process can be fired off individually as well, e.g. `execute_scraper`.
 
 ### Scraper
 
@@ -34,11 +38,3 @@ More information coming soon...
 ## Shared Classes
 
 More information coming soon...
-
-## 
-
-
-
-# TODO: Add **kwargs** handlings for aggregaotr, create next instance for each argument
-# TODO: Refactor merge files method to a shared class?
-# TODO: Remove unused imports
