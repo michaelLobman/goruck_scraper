@@ -15,7 +15,9 @@ class Merger(FileProcessor):
 		print("files merged")
 
 	def execute(self):
-		if self._merged.get_first_line() != self._prepend.get_first_line():
+		prepend_first_line = self._prepend.get_first_line()
+		merged_first_line = self._merged.get_first_line()
+		if prepend_first_line and merged_first_line and merged_first_line != prepend_first_line:
 			self._merged.create_backup()
 			self.merge_files()
 		else:

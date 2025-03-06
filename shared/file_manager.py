@@ -22,6 +22,10 @@ class FileManager:
 		backup.write_bytes(src.read_bytes()) 
 
 	def get_first_line(self):
+		i = 0
+		line = False
 		with open(self._path, "r") as file:
-			first_line = file.readline().strip()
-			return first_line
+			while not line and i < 2:
+				line = file.readline().strip()
+				i += 1
+			return line
