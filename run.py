@@ -4,4 +4,5 @@ from executor.executor import Executor
 optional_parameters = ["push up", "deadlift", "swings", "row", "squat", "wear"]
 optional = None
 executor = Executor("vest", optional)
-executor.execute_all()
+# executor.execute_all()
+executor.execute_converter()

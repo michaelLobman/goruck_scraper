@@ -1,12 +1,14 @@
 from scraper.scraper import Scraper
 from merger.merger import Merger
 from aggregator.aggregator import Aggregator 
+from converter.converter import Converter
 
 class Executor:
 	def __init__(self, keyword, optional=None):
 		self._scraper = Scraper()
 		self._merger = Merger()
 		self._aggregator = Aggregator(keyword, optional)
+		self._converter = Converter()
 
 	def execute_all(self):
 		self._scraper.execute()
@@ -24,3 +26,5 @@ class Executor:
 
 	def execute_aggregator(self):
 		self._aggregator.execute()
+	def execute_converter(self):
+		self._converter.execute()

@@ -38,3 +38,12 @@ More information coming soon...
 ## Shared Classes
 
 More information coming soon...
+
+#### TODOS
+  
+  1. format to csv
+  2. clean up code to be less nested and more pythonic
+  3. Include archive in filter?
+  4. Different file formats?
+  5. Filtering / favoriting?
+  6. Paginate files?
