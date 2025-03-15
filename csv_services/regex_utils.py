@@ -5,10 +5,10 @@ class RegexUtils():
 	DATE = r"^\d{1,2}\.\d{1,2}\.\d{1,2}"
 	TITLE = r"“(.*?)”"
 	ROUNDS = r"(\d+)\s+rounds"
-	EX_REPS = r"^\d+\s[A-Za-z-\s\d]+"
-	EX = r"\s[A-Za-z-\s]+"
-	# REPS = r"^\d+[A-Za-z-\d]+"
+	EX_REPS = r"^\d.*"
+	EX = r"\s.*"
 	REPS = r"^\d\S*"
+	RX = r"^(Rx:|Male:).*"
 
 	@staticmethod
 	def match_date(line):
