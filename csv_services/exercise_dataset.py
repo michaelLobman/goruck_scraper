@@ -11,7 +11,6 @@ class ExerciseDataset:
 		self._rounds = rounds
 		self._rx = rx
 		self._duration = duration
-		self.regex = RegexUtils()
 		self.data = []
 		self._state_change = False
 
@@ -65,13 +64,17 @@ class ExerciseDataset:
 		self._identity_counter += 1
 		return self._identity_counter
 
+	@property
+	def previous_id(self):
+		return self._identity_counter - 1
+
 	def set_state_change(self, old, new):
 		return self._state_change or old != new
 
 	def set_metadata(self, line):
-		self.date = self.date if self.date else self.regex.match_date(line)
-		self.title = self.title if self.title else self.regex.match_title(line)
-		self.rounds = self.rounds if self.rounds else self.regex.match_rounds(line)
+		self.date = self.date if self.date else RegexUtils.match_date(line)
+		self.title = self.title if self.title else RegexUtils.match_title(line)
+		self.rounds = self.rounds if self.rounds else RegexUtils.match_rounds(line)
 
 		return self._state_change
 
@@ -84,20 +87,20 @@ class ExerciseDataset:
 		if self.set_metadata(line):
 			return True
 
-		exercise_and_reps = self.regex.match_exercise_and_reps(line)
+		ex_reps = RegexUtils.match_ex_reps(line)
 
-		if not exercise_and_reps:
+		if not ex_reps:
 			return False
 
-		if "or" in exercise_and_reps.lower():
-			split = exercise_and_reps.split("or")
+		if "or" in ex_reps.lower():
+			split = ex_reps.split("or")
 			for x in split:
 				print("x split")
 				print(f"split: {split}")
-				self.data.append(ExerciseData(self, x))
+				self.data.append(ExerciseData(self, x, True))
 			return True
 
-		self.data.append(ExerciseData(self, exercise_and_reps))
+		self.data.append(ExerciseData(self, ex_reps))
 
 		return True
 

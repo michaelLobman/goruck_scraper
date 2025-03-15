@@ -7,47 +7,48 @@ class RegexUtils():
 	ROUNDS = r"(\d+)\s+rounds"
 	EX_REPS = r"^\d+\s[A-Za-z-\s\d]+"
 	EX = r"\s[A-Za-z-\s]+"
-	REPS = r"^\d+[A-Za-z-\d]+"
+	# REPS = r"^\d+[A-Za-z-\d]+"
+	REPS = r"^\d\S*"
 
 	@staticmethod
-	def match_date(self,line):
-		match = re.search(self._date_pattern, line)
+	def match_date(line):
+		match = re.search(RegexUtils.DATE, line)
 		if not match:
 			return None
 		date_str = match.group()
 		return datetime.strptime(date_str, "%m.%d.%y")
 
 	@staticmethod
-	def match_title(self,line):
-		match = re.search(self._title_pattern, line)
+	def match_title(line):
+		match = re.search(RegexUtils.TITLE, line)
 		if not match:
 			return None
 		return match.group()
 
 	@staticmethod
-	def match_rounds(self,line):
-		match = re.search(self._rounds_pattern, line.lower())
+	def match_rounds(line):
+		match = re.search(RegexUtils.ROUNDS, line.lower())
 		if not match:
 			return None
 		return match.group(1)
 
 	@staticmethod
-	def match_exercise_and_reps(self, line):
-		match = re.search(self._exercise_and_reps_pattern, line)
+	def match_ex_reps(line):
+		match = re.search(RegexUtils.EX_REPS, line)
 		if not match:
 			return None
 		return match.group()
 
 	@staticmethod
-	def match_exercise(self, line):
-		match = re.search(self._exercise_pattern, line.strip())
+	def match_ex(line):
+		match = re.search(RegexUtils.EX, line.strip())
 		if not match:
 			return None
 		return match.group()
-		
+
 	@staticmethod
-	def match_reps(self, line):
-		match = re.search(self._reps_pattern, line.strip())
+	def match_reps(line):
+		match = re.search(RegexUtils.REPS, line.strip())
 		if not match:
 			return None
 		return match.group()
