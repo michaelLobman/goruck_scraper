@@ -4,13 +4,13 @@ from csv_services.exercise_data import ExerciseData
 from csv_services.regex_utils import RegexUtils
 
 class ExerciseDataset:
-	def __init__ (self, title=None, date=None, rounds=None, rx=None, duration=None):
+	def __init__ (self):
 		self._identity_counter = 0
-		self._title = title
-		self._date = date
-		self._rounds = rounds
-		self._rx = rx
-		self._duration = duration
+		self._title = None
+		self._date = None
+		self._rounds = None
+		self._rx = None
+		self._duration = None
 		self.data = []
 		self._state_change = False
 
@@ -72,10 +72,10 @@ class ExerciseDataset:
 		return self._state_change or old != new
 
 	def set_metadata(self, line):
-		self.date = self.date if self.date else RegexUtils.match_date(line)
-		self.title = self.title if self.title else RegexUtils.match_title(line)
-		self.rounds = self.rounds if self.rounds else RegexUtils.match_rounds(line)
-
+		self.date = self.date if self.date else RegexUtils.try_match(line, "date")
+		self.title = self.title if self.title else RegexUtils.try_match(line, "title")
+		self.rounds = self.rounds if self.rounds else RegexUtils.try_match(line, "rounds")
+		self.rx = self.rx if self.rx else RegexUtils.try_match(line, "rx")
 		return self._state_change
 
 	def parse_line(self, line):
@@ -87,7 +87,7 @@ class ExerciseDataset:
 		if self.set_metadata(line):
 			return True
 
-		ex_reps = RegexUtils.match_ex_reps(line)
+		ex_reps = RegexUtils.try_match(line, "ex_reps")
 
 		if not ex_reps:
 			return False
@@ -95,8 +95,6 @@ class ExerciseDataset:
 		if "or" in ex_reps.lower():
 			split = ex_reps.split("or")
 			for x in split:
-				print("x split")
-				print(f"split: {split}")
 				self.data.append(ExerciseData(self, x, True))
 			return True
 

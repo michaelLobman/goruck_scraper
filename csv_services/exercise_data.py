@@ -7,7 +7,6 @@ class ExerciseData():
 		self.rx = dataset.rx
 		self.rounds = dataset.rounds
 		self.duration = dataset.duration
-		# TODO: refactor
-		self.ex = RegexUtils.match_ex(ex_reps)
-		self.reps = RegexUtils.match_reps(ex_reps)
+		self.ex = RegexUtils.try_match(ex_reps, "ex")
+		self.reps = RegexUtils.try_match(ex_reps, "reps")
 		self.has_alt = has_alt
