@@ -1,6 +1,6 @@
 from csv_services.regex_utils import RegexUtils
 
-class ExerciseData():
+class ExData():
 	def __init__(self, dataset, ex_reps, has_alt = False):
 		self.id = dataset.id_counter
 		self.date = dataset.date

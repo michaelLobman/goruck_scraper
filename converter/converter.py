@@ -2,7 +2,7 @@ import pandas as pd
 import csv
 import re
 from datetime import datetime
-from csv_services.exercise_dataset import ExerciseDataset
+from csv_services.ex_dataset import ExDataset
 
 
 class Converter():
@@ -11,11 +11,11 @@ class Converter():
 
 	def execute(self):
 		with open("./test_files/convert_test.txt", "r") as txt:
-			ex = ExerciseDataset()
+			ex = ExDataset()
 			for line in txt:
 				if not ex.parse_line(line) and len(ex.data) > 0:
 					self.all_ex.extend(ex.data)
-					ex = ExerciseDataset()
+					ex = ExDataset()
 
 		df = pd.DataFrame([vars(ex_data) for ex_data in self.all_ex])
 		print(df)

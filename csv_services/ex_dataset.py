@@ -1,9 +1,9 @@
 import re
 from datetime import datetime
-from csv_services.exercise_data import ExerciseData
+from csv_services.ex_data import ExData
 from csv_services.regex_utils import RegexUtils
 
-class ExerciseDataset:
+class ExDataset:
 	def __init__ (self):
 		self._identity_counter = 0
 		self._title = None
@@ -95,10 +95,10 @@ class ExerciseDataset:
 		if "or" in ex_reps.lower():
 			split = ex_reps.split("or")
 			for x in split:
-				self.data.append(ExerciseData(self, x, True))
+				self.data.append(ExData(self, x, True))
 			return True
 
-		self.data.append(ExerciseData(self, ex_reps))
+		self.data.append(ExData(self, ex_reps))
 
 		return True
 
