@@ -5,11 +5,17 @@ from csv_services.ex_metadata import ExMetadata
 from csv_services.regex_utils import RegexUtils
 
 class ExDataset:
-	def __init__ (self):
-		self._id_incrementer = 0
-		# metadata property
+	def __init__(self, seed=-1):
+		self._id_incrementer = seed
 		self._metadata = ExMetadata()
 		self.data = []
+
+	def compile_data(self):
+		max_id = 0
+		for x in self.data:
+			max_id = max(x.id, max_id)
+			x.__dict__.update(self._metadata.__dict__)
+		return max_id
 
 	@property
 	def id_incrementer(self):
@@ -20,7 +26,7 @@ class ExDataset:
 		if not line.strip():
 			return None
 
-		if self._metadata.set_metadata(line):
+		if self._metadata.set(line):
 			return True
 
 		ex_reps = RegexUtils.try_match(line, "ex_reps")

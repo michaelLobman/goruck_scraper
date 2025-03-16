@@ -7,12 +7,14 @@ class ExMetadata():
 		self.rounds = None
 		self.rx = None
 
-	def set_metadata(self, line):
+	def set(self, line):
+		any_match = False
 		for attr, value in vars(self).items():
-			if value:
+			if value:					
 				continue
-			attr_str = str(attr)
-			attr = RegexUtils.try_match(line, attr_str)
-			if attr:
-				return True
+			match = RegexUtils.try_match(line, attr)
+			if match:
+				setattr(self, attr, match)
+				if attr != "title":
+					return True
 		return False

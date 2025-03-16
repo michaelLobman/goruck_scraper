@@ -41,6 +41,8 @@ More information coming soon...
 
 #### TODOS
 
+title and date are on same line, need to not skip those
+
 1. no longer getting reps fro sb rows...
 
   1. Convert multiple

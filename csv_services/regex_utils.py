@@ -1,11 +1,12 @@
 import re
 from datetime import datetime
+from dateutil import parser
 
 class RegexUtils():
 
 	PATTERNS = {
-		"date": r"^\d{1,2}\.\d{1,2}\.\d{1,2}",
-		"title": r"“(.*?)”",
+		"date": r"^\d{1,2}\.\d{1,2}\.\d{1,4}",
+		"title": r'(?<=[“""])(.*?)(?=["”"])',
 		"rounds": r"(\d+)\s+rounds",
 		"ex_reps": r"^\d.*",
 		"ex": r"\s.*",
@@ -25,7 +26,5 @@ class RegexUtils():
 		if key in RegexUtils.GROUP1:
 			output = match.group(1)
 		elif key == "date":
-			output = datetime.strptime(output, "%m.%d.%y")
-		if key == "rx":
-			print(f"rx key matched output: {output}")
+			output = parser.parse(output)
 		return output
