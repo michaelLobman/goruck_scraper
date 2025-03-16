@@ -10,18 +10,22 @@ class RegexUtils():
 		"ex_reps": r"^\d.*",
 		"ex": r"\s.*",
 		"reps": r"^\d\S*",
-		"rx": r"^(rx:|male:).*"
+		"rx": r"^(rx|male).*$"
 	}
+	GROUP1 = ["rounds"]
 
 	@staticmethod
 	def try_match(line, key):
 		pattern = RegexUtils.PATTERNS[key]
-		match = re.search(pattern, line.lower())
+		sanitized_line = line.lower().strip()
+		match = re.search(pattern, sanitized_line)
 		if not match:
 			return None
 		output = match.group()
-		if key == "rounds":
+		if key in RegexUtils.GROUP1:
 			output = match.group(1)
 		elif key == "date":
 			output = datetime.strptime(output, "%m.%d.%y")
+		if key == "rx":
+			print(f"rx key matched output: {output}")
 		return output

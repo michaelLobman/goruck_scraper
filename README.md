@@ -40,6 +40,11 @@ More information coming soon...
 More information coming soon...
 
 #### TODOS
+
+1. no longer getting reps fro sb rows...
+
+  1. Convert multiple
+  2. Handle rx, male, female, buy in, notes
   
   1. format to csv
   2. clean up code to be less nested and more pythonic
