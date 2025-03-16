@@ -40,17 +40,6 @@ More information coming soon...
 More information coming soon...
 
 #### TODOS
-
-title and date are on same line, need to not skip those
-
-1. no longer getting reps fro sb rows...
-
-  1. Convert multiple
-  2. Handle rx, male, female, buy in, notes
-  
-  1. format to csv
-  2. clean up code to be less nested and more pythonic
-  3. Include archive in filter?
-  4. Different file formats?
-  5. Filtering / favoriting?
-  6. Paginate files?
+  1. buy in, cash out, notes, scoring, amrap, etc
+  2. format to csv
+  3. clean up code to be less nested and more pythonic

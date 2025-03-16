@@ -7,8 +7,7 @@ from csv_services.ex_dataset import ExDataset
 class Converter():
 	def __init__(self):
 		self.ex_list = []
-		pass
-
+		
 	def execute(self):
 		last_id = -1
 		with open("./test_files/convert_test.txt", "r") as txt:
