@@ -43,7 +43,7 @@ More information coming soon...
 
 ##### NOTE
 
-I think I can use list comprehension to compile the data. I also think the id should be handled differently, potentially on the ex_collection class if we can find other uses for it. Also rename csv services that's not very applicable anymore
+Handle multiple rx, male, etc. need these to just be appended to existing.
   1. buy in, cash out, notes, scoring, amrap, etc
   2. format to csv
   3. clean up code to be less nested and more pythonic

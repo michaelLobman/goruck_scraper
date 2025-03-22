@@ -16,6 +16,9 @@ class Converter():
 					ex.compile_data()
 					self.ex_list.extend(ex.data)
 					ex = ExDataset()
+			if not any(ex._metadata.title == x.title for x in self.ex_list):
+				ex.compile_data()
+				self.ex_list.extend(ex.data)
 		df = pd.DataFrame([vars(ex_data) for ex_data in self.ex_list])
 		print(df)
 			# write to file
