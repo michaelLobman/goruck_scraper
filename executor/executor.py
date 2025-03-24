@@ -26,5 +26,6 @@ class Executor:
 
 	def execute_aggregator(self):
 		self._aggregator.execute()
+		
 	def execute_converter(self):
 		self._converter.execute()

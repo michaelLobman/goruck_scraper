@@ -14,24 +14,33 @@ class ExDataset:
 			x.__dict__.update(self._metadata.__dict__)
 
 	def parse_line(self, line):
-		if not line.strip():
+		# TODO: refactor each into own method?
+
+		stripped = line.strip()
+
+		if not stripped:
 			return None
 
-		if self._metadata.set(line):
+		if self._metadata.set(stripped):
 			return True
 
-		ex_reps = RegexUtils.try_match(line, "ex_reps")
-
-		if not ex_reps:
-			self._metadata.notes = line.strip()
+		if self._metadata.rep_scheme:
+			ex = ExData(ex=stripped, reps=self._metadata.rep_scheme)
+			self.data.append(ex)
 			return True
 
-		if "or" in ex_reps.lower():
-			split = ex_reps.split("or")
+		ex_match = RegexUtils.try_match(stripped, "ex_reps")
+
+		if not ex_match:
+			self._metadata.notes = stripped.strip()
+			return True
+
+		if " or " in ex_match.lower():
+			split = ex_match.split(" or ")
 			for x in split:
-				self.data.append(ExData(x, True))
+				self.data.append(ExData(ex_reps=x, has_alt=True))
 			return True
 
-		self.data.append(ExData(ex_reps))
+		self.data.append(ExData(ex_reps=ex_match))
 
 		return True

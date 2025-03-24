@@ -21,4 +21,4 @@ class Converter():
 				self.ex_list.extend(ex.data)
 		df = pd.DataFrame([vars(ex_data) for ex_data in self.ex_list])
 		print(df)
-			# write to file
+		# write to file

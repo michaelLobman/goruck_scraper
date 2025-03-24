@@ -12,7 +12,9 @@ class RegexUtils():
 		"ex": r"\s.*",
 		"reps": r"^\d\S*",
 		"rx": r"^(rx|male).*$",
-		"scoring": r"(?<=scoring=).*"
+		"scoring": r"(?<=scoring=).*",
+		"rep_scheme": r"^\d+-.*",
+		"all": r".*"
 	}
 	GROUP1 = ["rounds"]
 
@@ -28,5 +30,4 @@ class RegexUtils():
 			output = match.group(1)
 		elif key == "date":
 			output = parser.parse(output)
-			# i think i need to trim the whitespace from the string,
 		return output

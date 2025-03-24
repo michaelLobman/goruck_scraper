@@ -8,6 +8,7 @@ class ExMetadata():
 		self.rx = None
 		self.scoring = None
 		self.notes = None
+		self.rep_scheme = None
 
 	def set(self, line):
 		any_match = False
@@ -16,11 +17,9 @@ class ExMetadata():
 				continue
 			match = RegexUtils.try_match(line, attr)
 			if match:
+				if attr == "rep_scheme":
+					print("matched rep scheme")
 				setattr(self, attr, match)
-				# if match and attr == "scoring":
-					# THIS IS A NEW EX INSTANCE for the alst one
-					# bc the "notes" in the final ex don't match anything at all...
-					# import pdb; pdb.set_trace()  # Breakpoint here
 				if attr != "title":
 					return True
 		return False
