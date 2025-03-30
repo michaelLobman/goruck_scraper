@@ -3,6 +3,7 @@ import csv
 import re
 from datetime import datetime
 from ex_services.ex_dataset import ExDataset
+from tabulate import tabulate
 
 class Converter():
 	def __init__(self):
@@ -38,6 +39,7 @@ class Converter():
 			else:
 				filtered_by_title = self._df.loc[self._df['title'] == title, self._check_cols]
 
+			dropped_na = filtered_by_title.dropna(axis=1, how="all", inplace=False)
 			
 			print(f"___{title}___")
-			print(filtered_by_title)
+			print(tabulate(dropped_na, headers='keys', tablefmt='grid', showindex=False))
