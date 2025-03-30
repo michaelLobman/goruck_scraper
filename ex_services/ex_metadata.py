@@ -1,4 +1,4 @@
-from csv_services.regex_utils import RegexUtils
+from ex_services.regex_utils import RegexUtils
 
 class ExMetadata():
 	def __init__(self):

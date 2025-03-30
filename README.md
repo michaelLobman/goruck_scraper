@@ -11,7 +11,7 @@ There are three main classes and associated processes in the scraper, all of whi
 
 ### Executor
 
-Instatiates with instances of Scraper, Merger, and Aggregator classes as properties. All three processes can be run by evoking `execute_all`, though each process can be fired off individually as well, e.g. `execute_scraper`.
+Instatiates with instances of Scraper, Merger, and Converter classes as properties. All three processes can be run by evoking `execute_all`, though each process can be fired off individually as well, e.g. `execute_scraper`.
 
 ### Scraper
 
@@ -21,29 +21,17 @@ Before writing, scraper class will create a backup of the prepend file if it exi
 
 ### Merger
 
-The merger class merges the newly fetched results with the most recent `goruck_merged.txt` file. If the file exists, a backup is created prior to the writing.
+The Merger class merges the newly fetched results with the most recent `goruck_merged.txt` file. If the file exists, a backup is created prior to the writing.
 
 
-### Aggregator
+### Converter
 
-Finally, the Aggregator class filters the full workout list by the inclusion of a single keyword, and, optionally, if a threshold of optional keywords is met. 
+The Converter class initializes a dataframe from the `goruck_merged.txt` file, flattening the various formats into a rigid structure. I am currently building this out to handle all workout formats.
 
-Similarly to the Scraper and Merger classes, a backup of the aggregated file is created before writing the filtered data.
-
-
-## Archival Workouts
-
-More information coming soon...
-
-## Shared Classes
-
-More information coming soon...
 
 #### TODOS
 
-##### NOTE
-
-Handle multiple rx, male, etc. need these to just be appended to existing.
   1. buy in, cash out, notes, scoring, amrap, etc
   2. format to csv
-  3. clean up code to be less nested and more pythonic
+  3. front end with datatables for filtering
+  4. clean up code to be less nested and more pythonic

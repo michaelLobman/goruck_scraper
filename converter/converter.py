@@ -2,13 +2,14 @@ import pandas as pd
 import csv
 import re
 from datetime import datetime
-from csv_services.ex_dataset import ExDataset
+from ex_services.ex_dataset import ExDataset
 
 class Converter():
 	def __init__(self):
 		self.ex_list = []
 		self._df = None
 		self._check_cols = ['ex', 'reps']
+		self._check_titles = ['suit up']
 
 	def execute(self):
 		self.initialize_df()
@@ -28,8 +29,8 @@ class Converter():
 		self._df = pd.DataFrame([vars(ex_data) for ex_data in self.ex_list])
 
 	def check_df(self):
-		unique_titles = self._df['title'].unique()
-		for title in unique_titles:
+		title_filter = self._check_titles or self._df['title'].unique()
+		for title in title_filter:
 			print(f"___{title}___")
 			filtered_by_title = self._df.loc[self._df['title'] == title, self._check_cols]
 			print(filtered_by_title)

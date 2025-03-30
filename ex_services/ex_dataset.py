@@ -1,9 +1,9 @@
 import re
 from datetime import datetime
-from csv_services.ex_data import ExData
-from csv_services.ex_metadata import ExMetadata
-from csv_services.regex_utils import RegexUtils
-# need to check metadata the compilation
+from ex_services.ex_data import ExData
+from ex_services.ex_metadata import ExMetadata
+from ex_services.regex_utils import RegexUtils
+
 class ExDataset:
 	def __init__(self):
 		self._metadata = ExMetadata()
@@ -27,6 +27,7 @@ class ExDataset:
 		self.data.append(ExData(ex_reps=match))
 
 	def parse_line(self, line):
+		# refactor for a loop of some kind?
 		self.stripped = line.strip()
 
 		if not self.stripped:

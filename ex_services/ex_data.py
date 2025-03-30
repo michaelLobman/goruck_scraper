@@ -1,4 +1,4 @@
-from csv_services.regex_utils import RegexUtils
+from ex_services.regex_utils import RegexUtils
 
 class ExData():
 	def __init__(self, ex=None, reps=None, ex_reps=None, has_alt=False):
