@@ -8,6 +8,9 @@ class ExMetadata():
 		self.amrap = None
 		self.rep_scheme = None
 		self.rx = None
+		self.rx_plus = None
+		self.male = None
+		self.female = None
 		self.scoring = None
 		self.notes = None
 
