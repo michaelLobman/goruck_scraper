@@ -10,7 +10,6 @@ class Converter():
 		self.ex_list = []
 		self._df = None
 		self._show_all = True
-		self._check_cols = ['ex', 'reps', 'amrap']
 		self._check_titles = ['suit up']
 
 	def execute(self):
@@ -33,15 +32,10 @@ class Converter():
 	def check_df(self):
 		title_filter = self._df['title'].unique() if self._show_all else self._check_titles
 		for title in title_filter:
-			df_by_title = None
-			if self._show_all:
-				df_by_title = self._df.loc[self._df['title'] == title]
-			else:
-				df_by_title = self._df.loc[self._df['title'] == title, self._check_cols]
-
-			df_dropped_title = df_by_title.drop('title', axis=1)
-			df_dropped_na = df_dropped_title.dropna(axis=1, how="all", inplace=False)
+			df_by_title = self._df.loc[self._df['title'] == title]
+			df_drop_title_date = df_by_title.drop(['title', 'date'], axis=1)
+			df_drop_na = df_drop_title_date.dropna(axis=1, how="all", inplace=False)
 
 		
 			print(f"++++++++++ {title.upper()} ++++++++++")
-			print(tabulate(df_dropped_na, headers='keys', tablefmt='grid', showindex=False))
+			print(tabulate(df_drop_na, headers='keys', tablefmt='grid', showindex=False))

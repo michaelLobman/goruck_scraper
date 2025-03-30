@@ -15,7 +15,7 @@ class ExDataset:
 			x.__dict__.update(self._metadata.__dict__)
 
 	def handle_rep_scheme(self):
-		ex = ExData(ex=self.stripped, reps=self._metadata.rep_scheme)
+		ex = ExData(ex=self.stripped)
 		self.data.append(ex)
 
 	def handle_ex_reps_match(self, match):
