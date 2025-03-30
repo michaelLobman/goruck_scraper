@@ -9,6 +9,7 @@ class ExMetadata():
 		self.scoring = None
 		self.notes = None
 		self.rep_scheme = None
+		self.amrap = None
 
 	def set(self, line):
 		any_match = False

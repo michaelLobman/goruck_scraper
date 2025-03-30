@@ -8,7 +8,8 @@ class Converter():
 	def __init__(self):
 		self.ex_list = []
 		self._df = None
-		self._check_cols = ['ex', 'reps']
+		self._show_all = True
+		self._check_cols = ['ex', 'reps', 'amrap']
 		self._check_titles = ['suit up']
 
 	def execute(self):
@@ -29,8 +30,14 @@ class Converter():
 		self._df = pd.DataFrame([vars(ex_data) for ex_data in self.ex_list])
 
 	def check_df(self):
-		title_filter = self._check_titles or self._df['title'].unique()
+		title_filter = self._df['title'].unique() if self._show_all else self._check_titles
 		for title in title_filter:
+			filtered_by_title = None
+			if self._show_all:
+				filtered_by_title = self._df.loc[self._df['title'] == title]
+			else:
+				filtered_by_title = self._df.loc[self._df['title'] == title, self._check_cols]
+
+			
 			print(f"___{title}___")
-			filtered_by_title = self._df.loc[self._df['title'] == title, self._check_cols]
 			print(filtered_by_title)

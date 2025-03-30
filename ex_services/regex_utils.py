@@ -14,9 +14,10 @@ class RegexUtils():
 		"rx": r"^(rx|male).*$",
 		"scoring": r"(?<=scoring=).*",
 		"rep_scheme": r"^\d+-.*",
+		"amrap": r"(\d+).*(amrap)",
 		"all": r".*"
 	}
-	GROUP1 = ["rounds"]
+	GROUP1 = ["rounds", "amrap"]
 
 	@staticmethod
 	def try_match(line, key):
