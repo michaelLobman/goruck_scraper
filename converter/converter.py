@@ -10,7 +10,7 @@ class Converter():
 		self.ex_list = []
 		self._df = None
 		self._show_all = True
-		self._check_titles = ['suit up']
+		self._check_titles = ['the 13']
 
 	def execute(self):
 		self.initialize_df()

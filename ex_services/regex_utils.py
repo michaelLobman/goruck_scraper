@@ -13,7 +13,7 @@ class RegexUtils():
 		"reps": r"^\d\S*",
 		"rx": r"^(rx|male).*$",
 		"scoring": r"(?<=scoring=).*",
-		"rep_scheme": r"^\d+-.*",
+		"rep_scheme": r"^\d+-\d+-.*",
 		"amrap": r"(\d+).*(amrap)",
 		"all": r".*"
 	}
