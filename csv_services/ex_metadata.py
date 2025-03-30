@@ -17,8 +17,6 @@ class ExMetadata():
 				continue
 			match = RegexUtils.try_match(line, attr)
 			if match:
-				if attr == "rep_scheme":
-					print("matched rep scheme")
 				setattr(self, attr, match)
 				if attr != "title":
 					return True
