@@ -5,11 +5,11 @@ class ExMetadata():
 		self.title = None
 		self.date = None
 		self.rounds = None
+		self.amrap = None
+		self.rep_scheme = None
 		self.rx = None
 		self.scoring = None
 		self.notes = None
-		self.rep_scheme = None
-		self.amrap = None
 
 	def set(self, line):
 		any_match = False

@@ -33,13 +33,15 @@ class Converter():
 	def check_df(self):
 		title_filter = self._df['title'].unique() if self._show_all else self._check_titles
 		for title in title_filter:
-			filtered_by_title = None
+			df_by_title = None
 			if self._show_all:
-				filtered_by_title = self._df.loc[self._df['title'] == title]
+				df_by_title = self._df.loc[self._df['title'] == title]
 			else:
-				filtered_by_title = self._df.loc[self._df['title'] == title, self._check_cols]
+				df_by_title = self._df.loc[self._df['title'] == title, self._check_cols]
 
-			dropped_na = filtered_by_title.dropna(axis=1, how="all", inplace=False)
-			
-			print(f"___{title}___")
-			print(tabulate(dropped_na, headers='keys', tablefmt='grid', showindex=False))
+			df_dropped_title = df_by_title.drop('title', axis=1)
+			df_dropped_na = df_dropped_title.dropna(axis=1, how="all", inplace=False)
+
+		
+			print(f"++++++++++ {title.upper()} ++++++++++")
+			print(tabulate(df_dropped_na, headers='keys', tablefmt='grid', showindex=False))
