@@ -36,6 +36,8 @@ class ExDataset:
 		if self._metadata.set(self.stripped):
 			return True
 
+		# i think we have to handle it here...
+
 		if self._metadata.rep_scheme:
 			self.handle_rep_scheme()
 			return True

@@ -10,6 +10,7 @@ class Converter():
 		self.ex_list = []
 		self._df = None
 		self._show_all = True
+		self._drop_cols = ['title', 'date', 'notes', 'scoring']
 		self._check_titles = ['the 13']
 
 	def execute(self):
@@ -33,8 +34,8 @@ class Converter():
 		title_filter = self._df['title'].unique() if self._show_all else self._check_titles
 		for title in title_filter:
 			df_by_title = self._df.loc[self._df['title'] == title]
-			df_drop_title_date = df_by_title.drop(['title', 'date'], axis=1)
-			df_drop_na = df_drop_title_date.dropna(axis=1, how="all", inplace=False)
+			df_drop_cols = df_by_title.drop(self._drop_cols, axis=1)
+			df_drop_na = df_drop_cols.dropna(axis=1, how="all", inplace=False)
 
 		
 			print(f"++++++++++ {title.upper()} ++++++++++")
